@@ -1,0 +1,66 @@
+<html ng-app="quizApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="quizx" content="true">
+  <script src="js/jquery.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/Chart.js"></script>
+  <script src="App.js"></script>
+</head>
+<body ng-controller="quizController">
+ <h1 style="text-align: center;">Cricket Trivia</h1>
+ <section class="indent-1">
+ <form name="quiz">
+  <div class="row">
+    <div class="col-md-8">
+        <span style="margin-left:20px" ng-show="submitted">Note : Questions highlighted in green are correct ,red one's are incorrect</span>
+         <div  ng-repeat="x in arr track by $index" >
+            <div class="panel-heading" style="padding:0px"></div>
+              <div class="panel-body">
+                 <div class="table-responsive">
+                   <table class="table table-bordered">
+                     <thead class="bg-primary">
+                       <tr>
+                         <th class="col-md-4">Question {{x.id}}</th>
+                         <th class="col-md-4">Your Answer</th>
+                      </tr>
+                     </thead>
+                     <tbody>
+                        <tr ng-class="{incorrectClass: arr[$index].correct === false ,correctClass : arr[$index].correct === true}" >
+                           <td>{{x.q1}}</td>
+                           <td> <select class="form-control" style="width:50%" name = "n1{{$index}}"
+                                 ng-disabled = "submitted" ng-model="selectedArray[$index].valueSelect"
+                                 ng-options="item for item in x.ops" check required>
+                                 <option value="">Please select an option</option>
+                           </td>
+                               <span style="color:red;" ng-show="quiz.n1{{$index}}.$dirty &&  quiz.n1{{$index}}.$error.check" >Please select one answer</span>
+                         </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+      </div>
+   <div class="col-md-4">
+    <center>
+        <div ng-show="submitted" style="height:400px; width:400px">
+          <canvas id="barChart" width="100px" height="100px"></canvas>
+        </div>
+   </center>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <input  type="submit" class=" btn btn-default" id="btn1" ng-disabled = "submitted || quiz.$invalid" value="Submit" ng-click="submitQuiz()">
+         <input type="button" class=" btn btn-default" id="btn2" ng-click="clear()" value="Clear Values">
+   <div>
+</div>
+</form>
+</section>
+</body>
+</html>

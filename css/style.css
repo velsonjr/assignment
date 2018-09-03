@@ -1,0 +1,34 @@
+#btn1,#btn2{
+    display: inline-block;
+    vertical-align: top;
+    width:40%;
+    font-weight: bold;
+}
+div { overflow-x: hidden; }
+#btn1:hover{
+  background: rgba(0,0,0,0);
+	color: #3a7999;
+	box-shadow: inset 0 0 0 3px #3a7999;
+}
+html { font-size:100%; }
+#btn2:hover{
+  background: rgba(0,0,0,0);
+	color: #3a7999;
+	box-shadow: inset 0 0 0 3px #3a7999;
+}
+.incorrectClass
+{
+  border:5px solid #f00;
+}
+.correctClass
+{
+  border:5px solid #008000;
+}
+th
+{
+  margin-bottom:30px;
+  background-color:black
+}
+td{
+    background-color:#D3D3D3;
+}
